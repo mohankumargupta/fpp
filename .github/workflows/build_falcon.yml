@@ -11,6 +11,9 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Docker
     steps:
       - name: Checkout
         uses: actions/checkout@v2
