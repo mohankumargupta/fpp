@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: Docker
+        working-directory: ./Docker
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
         with:
-          platforms: linux/arm, linux/arm64
+          platforms: linux/arm, linux/aarch64
 
       - name: Set up Docker Buildx
         id: buildx
@@ -64,6 +64,6 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
-          platforms: linux/arm,linux/arm64
+          platforms: linux/arm/v7,linux/arm/v6
           push: true
           tags: ${{ steps.prep.outputs.tags }}
