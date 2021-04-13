@@ -44,8 +44,7 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master
-        with:
-          platforms: linux/arm, linux/aarch64
+        
 
       #- name: cd to Docker directory in repo
       #  run: |
@@ -55,6 +54,9 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@master
+        with:
+          driver-opts: network=host
+          install: true
 
       - name: Login to DockerHub
         if: github.event_name != 'pull_request'
