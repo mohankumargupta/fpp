@@ -47,10 +47,10 @@ jobs:
         with:
           platforms: linux/arm, linux/aarch64
 
-      - name: cd to Docker directory in repo
-        run: |
-          cd Docker
-          ls
+      #- name: cd to Docker directory in repo
+      #  run: |
+      #    cd Docker
+      #    ls
 
       - name: Set up Docker Buildx
         id: buildx
@@ -67,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: .
+          context: ./Docker
           file: ./Dockerfile
           platforms: linux/arm/v7,linux/arm/v6
           push: true
